@@ -19,7 +19,7 @@ fn alibaba_rules() []RuleItem {
 		RuleItem{
 			id:       'ai_commerce_core'
 			title:    'AI commerce product thesis is core to the pitch and demo.'
-			status:   'active'
+			status:   'done'
 			evidence: 'docs/pitch/product_pitch.md'
 		},
 		RuleItem{
