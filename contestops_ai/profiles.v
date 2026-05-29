@@ -8,6 +8,9 @@ pub fn manifest_for_profile(profile string) !PackageManifest {
 		'raise', 'raise_the_stakes', 'raise_the_stakes_ai_startup_competition' {
 			return raise_manifest()
 		}
+		'alibaba', 'alibaba_cocreate', 'alibaba_cocreate_pitch_2026', 'accio_work' {
+			return alibaba_manifest()
+		}
 		else {
 			return error('unknown profile: ${profile}')
 		}

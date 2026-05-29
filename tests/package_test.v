@@ -43,6 +43,19 @@ fn test_application_packet_renderer_uses_selected_manifest() {
 	assert packet.contains('Production readiness: 72%')
 }
 
+fn test_alibaba_profile_covers_accio_submission_package() {
+	manifest := contestops_ai.manifest_for_profile('alibaba') or { panic(err) }
+	assert manifest.project_name == 'Accio Commerce Copilot'
+	assert manifest.category == 'AI startup pitch'
+	assert manifest.prod_score >= 50
+	assert has_rule(manifest, 'ai_commerce_core')
+	assert has_rule(manifest, 'accio_work_use')
+	assert has_rule(manifest, 'unit_economics')
+	assert has_integration(manifest, 'accio_work')
+	assert has_integration(manifest, 'vue3_cdn_unocss')
+	assert has_integration(manifest, 'vlang')
+}
+
 fn test_mock_gemini_receipt_is_deterministic() {
 	prompt := 'Plan the next ContestOps AI task.'
 	response := contestops_ai.complete_with_default_provider(prompt, true) or { panic(err) }
