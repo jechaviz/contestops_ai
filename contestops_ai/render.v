@@ -7,7 +7,8 @@ pub fn manifest_json(manifest PackageManifest) string {
 		'  "rules": ${rules_json(manifest.rules)},\n' +
 		'  "milestones": ${milestones_json(manifest.milestones)},\n' +
 		'  "evidence": ${evidence_json(manifest.evidence)},\n' +
-		'  "integrations": ${integrations_json(manifest.integrations)}\n' + '}\n'
+		'  "integrations": ${integrations_json(manifest.integrations)},\n' +
+		'  "scorecard": ${scorecard_json(manifest.scorecard)}\n' + '}\n'
 }
 
 pub fn checklist_markdown(manifest PackageManifest) string {
@@ -118,6 +119,35 @@ pub fn strategic_brief_markdown(manifest PackageManifest) string {
 	return lines.join('\n') + '\n'
 }
 
+pub fn judge_scorecard_markdown(manifest PackageManifest) string {
+	scorecard := manifest.scorecard
+	mut lines := []string{}
+	lines << '# ${manifest.project_name} Judge Scorecard'
+	lines << ''
+	lines << 'Overall competitive score: ${scorecard.overall}/100'
+	lines << ''
+	lines << '| Dimension | Score | Weight | Evidence | Gap |'
+	lines << '|---|---:|---:|---|---|'
+	for dimension in scorecard.dimensions {
+		lines << '| ${dimension.label} | ${dimension.score} | ${dimension.weight} | `${dimension.evidence}` | ${dimension.gap} |'
+	}
+	lines << ''
+	lines << '## Competitor Battlecard'
+	lines << ''
+	lines << '| Archetype | Threat | Strength | Counter |'
+	lines << '|---|---:|---|---|'
+	for competitor in scorecard.competitors {
+		lines << '| ${competitor.name} | ${competitor.threat} | ${competitor.strength} | ${competitor.counter} |'
+	}
+	lines << ''
+	lines << '## Highest-Leverage Next Moves'
+	lines << ''
+	for move in scorecard.next_moves {
+		lines << '- ${move}'
+	}
+	return lines.join('\n') + '\n'
+}
+
 fn application_thesis(manifest PackageManifest) string {
 	match manifest.project_name {
 		'Accio Commerce Copilot' {
@@ -178,6 +208,34 @@ fn integrations_json(items []Integration) string {
 	mut parts := []string{}
 	for item in items {
 		parts << '{"kind":"${escape_json(item.kind)}","name":"${escape_json(item.name)}","status":"${escape_json(item.status)}","evidence":"${escape_json(item.evidence)}"}'
+	}
+	return '[' + parts.join(',') + ']'
+}
+
+fn scorecard_json(scorecard JudgeScorecard) string {
+	return '{"overall":${scorecard.overall},"dimensions":${dimensions_json(scorecard.dimensions)},"competitors":${competitors_json(scorecard.competitors)},"next_moves":${strings_json(scorecard.next_moves)}}'
+}
+
+fn dimensions_json(items []ScoreDimension) string {
+	mut parts := []string{}
+	for item in items {
+		parts << '{"id":"${escape_json(item.id)}","label":"${escape_json(item.label)}","score":${item.score},"weight":${item.weight},"evidence":"${escape_json(item.evidence)}","gap":"${escape_json(item.gap)}"}'
+	}
+	return '[' + parts.join(',') + ']'
+}
+
+fn competitors_json(items []CompetitorArchetype) string {
+	mut parts := []string{}
+	for item in items {
+		parts << '{"name":"${escape_json(item.name)}","strength":"${escape_json(item.strength)}","weakness":"${escape_json(item.weakness)}","counter":"${escape_json(item.counter)}","threat":${item.threat}}'
+	}
+	return '[' + parts.join(',') + ']'
+}
+
+fn strings_json(items []string) string {
+	mut parts := []string{}
+	for item in items {
+		parts << '"${escape_json(item)}"'
 	}
 	return '[' + parts.join(',') + ']'
 }

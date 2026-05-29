@@ -41,6 +41,12 @@ fn alibaba_rules() []RuleItem {
 			evidence: 'docs/pitch/unit_economics.md'
 		},
 		RuleItem{
+			id:       'competitive_edge'
+			title:    'Competitive positioning, judge rebuttals, and moat claims are ready.'
+			status:   'done'
+			evidence: 'docs/pitch/judge_scorecard.md'
+		},
+		RuleItem{
 			id:       'video'
 			title:    'Short demo-video outline and production shot list are ready.'
 			status:   'done'
@@ -133,6 +139,12 @@ fn alibaba_evidence() []EvidenceSlot {
 			status:      'done'
 			public_path: 'docs/media/video_outline.md'
 			private_ref: 'local capture plan'
+		},
+		EvidenceSlot{
+			name:        'judge_scorecard'
+			status:      'done'
+			public_path: 'docs/pitch/judge_scorecard.md'
+			private_ref: 'competitive pitch strategy'
 		},
 	]
 }

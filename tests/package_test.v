@@ -5,11 +5,13 @@ import contestops_ai
 fn test_manifest_covers_required_xprize_integrations() {
 	manifest := contestops_ai.default_manifest()
 	assert manifest.project_name == 'ContestOps AI'
-	assert manifest.prod_score >= 20
+	assert manifest.prod_score >= 80
 	assert has_integration(manifest, 'gemini_api')
 	assert has_integration(manifest, 'google_cloud')
 	assert has_rule(manifest, 'revenue')
 	assert has_rule(manifest, 'users')
+	assert manifest.scorecard.overall >= 75
+	assert manifest.scorecard.competitors.len >= 4
 }
 
 fn test_renderers_emit_submission_artifacts() {
@@ -20,6 +22,15 @@ fn test_renderers_emit_submission_artifacts() {
 	assert checklist.contains('Gemini API')
 	assert evidence.contains('gemini_call')
 	assert json.contains('"project_name": "ContestOps AI"')
+	assert json.contains('"scorecard"')
+}
+
+fn test_judge_scorecard_names_competitive_gaps() {
+	manifest := contestops_ai.default_manifest()
+	scorecard := contestops_ai.judge_scorecard_markdown(manifest)
+	assert scorecard.contains('Overall competitive score')
+	assert scorecard.contains('Vertical AI business with early revenue')
+	assert scorecard.contains('Close 3 arms-length paid pilots')
 }
 
 fn test_raise_profile_covers_startup_competition_gates() {
@@ -33,6 +44,16 @@ fn test_raise_profile_covers_startup_competition_gates() {
 	assert has_rule(manifest, 'dealum')
 	assert has_integration(manifest, 'dealum')
 	assert has_integration(manifest, 'waibav')
+	assert manifest.scorecard.overall >= 80
+	assert manifest.scorecard.competitors.len >= 5
+}
+
+fn test_raise_judge_scorecard_is_competition_specific() {
+	manifest := contestops_ai.raise_manifest()
+	scorecard := contestops_ai.judge_scorecard_markdown(manifest)
+	assert scorecard.contains('Team Strength')
+	assert scorecard.contains('Startup portals')
+	assert scorecard.contains('72-hour proof sprint')
 }
 
 fn test_application_packet_renderer_uses_selected_manifest() {
@@ -59,6 +80,7 @@ fn test_alibaba_profile_covers_accio_submission_package() {
 	assert has_rule(manifest, 'ai_commerce_core')
 	assert has_rule(manifest, 'accio_work_use')
 	assert has_rule(manifest, 'unit_economics')
+	assert has_rule(manifest, 'competitive_edge')
 	assert has_integration(manifest, 'accio_work')
 	assert has_integration(manifest, 'vue3_cdn_unocss')
 	assert has_integration(manifest, 'vlang')

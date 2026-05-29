@@ -16,6 +16,7 @@ v run . -- checklist out\RULES_CHECKLIST.generated.md
 v run . -- evidence out\EVIDENCE.generated.md
 v run . -- application-packet out\APPLICATION_PACKET.generated.md
 v run . -- strategic-brief out\STRATEGIC_BRIEF.generated.md
+v run . -- judge-scorecard out\JUDGE_SCORECARD.generated.md
 v run . -- gemini-smoke out\gemini_receipt.json --mock
 ```
 
@@ -27,6 +28,7 @@ v run . -- checklist --profile raise out\raise_RULES_CHECKLIST.generated.md
 v run . -- evidence --profile raise out\raise_EVIDENCE.generated.md
 v run . -- application-packet --profile raise out\raise_APPLICATION_PACKET.generated.md
 v run . -- strategic-brief --profile raise out\raise_STRATEGIC_BRIEF.generated.md
+v run . -- judge-scorecard --profile raise out\raise_JUDGE_SCORECARD.generated.md
 ```
 
 Use the Alibaba CoCreate Pitch / Accio Work profile with:
@@ -37,6 +39,7 @@ v run . -- checklist --profile alibaba out\alibaba_RULES_CHECKLIST.generated.md
 v run . -- evidence --profile alibaba out\alibaba_EVIDENCE.generated.md
 v run . -- application-packet --profile alibaba out\alibaba_APPLICATION_PACKET.generated.md
 v run . -- strategic-brief --profile alibaba out\alibaba_STRATEGIC_BRIEF.generated.md
+v run . -- judge-scorecard --profile alibaba out\alibaba_JUDGE_SCORECARD.generated.md
 ```
 
 Use a real Gemini call with:
@@ -59,6 +62,7 @@ v run . -- gemini-smoke out\gemini_receipt.json
 - `package.v`: default Build with Gemini XPRIZE package data.
 - `raise_package.v`: RAISE the STAKES startup application package data.
 - `alibaba_package.v`: Alibaba CoCreate Pitch / Accio Work package data.
+- `competitive.v`: judge scoring, competitor archetypes, and next moves.
 - `profiles.v`: profile selection for opportunity-specific packages.
 - `render.v`: JSON and markdown emitters.
 - `gemini.v`: provider interface, mock provider, env-backed Gemini provider.

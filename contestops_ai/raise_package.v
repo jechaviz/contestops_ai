@@ -11,6 +11,7 @@ pub fn raise_manifest() PackageManifest {
 		milestones:   raise_milestones()
 		evidence:     raise_evidence()
 		integrations: raise_integrations()
+		scorecard:    raise_scorecard()
 	}
 }
 

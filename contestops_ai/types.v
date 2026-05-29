@@ -32,6 +32,34 @@ pub:
 	evidence string
 }
 
+pub struct ScoreDimension {
+pub:
+	id       string
+	label    string
+	score    int
+	weight   int
+	evidence string
+	gap      string
+}
+
+pub struct CompetitorArchetype {
+pub:
+	name     string
+	strength string
+	weakness string
+	counter  string
+	threat   int
+}
+
+pub struct JudgeScorecard {
+pub:
+	project_name string
+	overall      int
+	dimensions   []ScoreDimension
+	competitors  []CompetitorArchetype
+	next_moves   []string
+}
+
 pub struct PackageManifest {
 pub:
 	project_name string
@@ -43,6 +71,7 @@ pub:
 	milestones   []Milestone
 	evidence     []EvidenceSlot
 	integrations []Integration
+	scorecard    JudgeScorecard
 }
 
 pub struct LlmResponse {
