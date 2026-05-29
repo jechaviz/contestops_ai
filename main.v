@@ -42,6 +42,9 @@ fn run(args []string) !int {
 		'application-packet' {
 			return write_or_print(args, contestops_ai.application_packet_markdown(manifest))
 		}
+		'strategic-brief' {
+			return write_or_print(args, contestops_ai.strategic_brief_markdown(manifest))
+		}
 		'gemini-smoke' {
 			mock := args.contains('--mock')
 			prompt := 'Create the next Build with Gemini XPRIZE execution step for ContestOps AI.'
@@ -111,6 +114,7 @@ fn print_help() {
 	println('  checklist [path]')
 	println('  evidence [path]')
 	println('  application-packet [path]')
+	println('  strategic-brief [path]')
 	println('  gemini-smoke [path] [--mock]')
 	println('')
 	println('Options:')

@@ -57,7 +57,7 @@ pub fn application_packet_markdown(manifest PackageManifest) string {
 	lines << ''
 	lines << '## Application Thesis'
 	lines << ''
-	lines << '${manifest.project_name} turns opportunity discovery, rule reading, evidence collection, demo packaging, and external submissions into AI-native startup operations.'
+	lines << application_thesis(manifest)
 	lines << ''
 	lines << '## Eligibility Gates'
 	lines << ''
@@ -79,11 +79,75 @@ pub fn application_packet_markdown(manifest PackageManifest) string {
 	return lines.join('\n') + '\n'
 }
 
+pub fn strategic_brief_markdown(manifest PackageManifest) string {
+	mut lines := []string{}
+	lines << '# ${manifest.project_name} Strategic Brief'
+	lines << ''
+	lines << 'Version: `${manifest.version}`'
+	lines << 'Category: ${manifest.category}'
+	lines << 'Deadline: ${manifest.deadline}'
+	lines << 'Production readiness: ${manifest.prod_score}%'
+	lines << ''
+	lines << '## Winning Thesis'
+	lines << ''
+	lines << winning_thesis(manifest)
+	lines << ''
+	lines << '## Proof Priorities'
+	lines << ''
+	lines << '- show the product operating end to end;'
+	lines << '- make AI decisions inspectable through generated artifacts;'
+	lines << '- tie every claim to an evidence slot;'
+	lines << '- keep external submission automation receipt-backed;'
+	lines << '- remove private applicant data from public artifacts.'
+	lines << ''
+	lines << '## Strongest Evidence'
+	lines << ''
+	for slot in manifest.evidence {
+		if slot.status in ['active', 'planned'] {
+			lines << '- ${slot.name}: `${slot.public_path}` (${slot.status}).'
+		}
+	}
+	lines << ''
+	lines << '## Competitive Frame'
+	lines << ''
+	lines << competitive_frame(manifest)
+	lines << ''
+	lines << '## Closing Line'
+	lines << ''
+	lines << '${manifest.project_name} turns deadline pressure into a repeatable AI operations workflow with checklists, evidence, payloads, and receipts.'
+	return lines.join('\n') + '\n'
+}
+
+fn application_thesis(manifest PackageManifest) string {
+	match manifest.project_name {
+		'Accio Commerce Copilot' {
+			return 'Accio Commerce Copilot helps small importers turn supplier discovery into an AI-scored buy plan with landed cost, margin, supplier risk, Accio Work execution steps, and launch evidence ready for CoCreate Pitch review.'
+		}
+		else {
+			return '${manifest.project_name} turns opportunity discovery, rule reading, evidence collection, demo packaging, and external submissions into AI-native startup operations.'
+		}
+	}
+}
+
 pub fn gemini_receipt_json(response LlmResponse, prompt string) string {
 	return '{\n' + field('provider', response.provider, true) +
 		field('model', response.model, true) + field('prompt_hash', hash_text(prompt), true) +
 		field('content', response.content, true) + '  "mock": ${response.mock},\n' +
 		'  "status_code": ${response.status_code}\n' + '}\n'
+}
+
+fn winning_thesis(manifest PackageManifest) string {
+	if manifest.category == 'AI startup pitch' {
+		return '${manifest.project_name} should be judged as a live AI operations product: it converts messy startup opportunities into execution plans, evidence ledgers, pitch assets, structured payloads, and external submission workflows.'
+	}
+	return '${manifest.project_name} should be judged by its ability to turn opportunity rules into running workflows, traceable evidence, and submission-ready artifacts.'
+}
+
+fn competitive_frame(manifest PackageManifest) string {
+	if manifest.category == 'AI startup pitch' {
+		return 'Position against portals, proposal writers, grant databases, generic agents, and consultants. The wedge is full application operations for founders, not only discovery or writing.'
+	}
+	return 'Position against manual operations and generic AI tooling by emphasizing domain-specific rules, evidence boundaries, and automation receipts.'
 }
 
 fn rules_json(items []RuleItem) string {

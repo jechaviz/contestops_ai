@@ -43,17 +43,33 @@ fn test_application_packet_renderer_uses_selected_manifest() {
 	assert packet.contains('Production readiness: 72%')
 }
 
+fn test_strategic_brief_positions_ai_startup_profiles() {
+	manifest := contestops_ai.raise_manifest()
+	brief := contestops_ai.strategic_brief_markdown(manifest)
+	assert brief.contains('Strategic Brief')
+	assert brief.contains('Competitive Frame')
+	assert brief.contains('full application operations for founders')
+}
+
 fn test_alibaba_profile_covers_accio_submission_package() {
 	manifest := contestops_ai.manifest_for_profile('alibaba') or { panic(err) }
 	assert manifest.project_name == 'Accio Commerce Copilot'
 	assert manifest.category == 'AI startup pitch'
-	assert manifest.prod_score >= 50
+	assert manifest.prod_score == 100
 	assert has_rule(manifest, 'ai_commerce_core')
 	assert has_rule(manifest, 'accio_work_use')
 	assert has_rule(manifest, 'unit_economics')
 	assert has_integration(manifest, 'accio_work')
 	assert has_integration(manifest, 'vue3_cdn_unocss')
 	assert has_integration(manifest, 'vlang')
+}
+
+fn test_alibaba_packet_uses_product_specific_thesis() {
+	manifest := contestops_ai.alibaba_manifest()
+	packet := contestops_ai.application_packet_markdown(manifest)
+	assert packet.contains('small importers')
+	assert packet.contains('Accio Work execution steps')
+	assert packet.contains('Production readiness: 100%')
 }
 
 fn test_mock_gemini_receipt_is_deterministic() {
