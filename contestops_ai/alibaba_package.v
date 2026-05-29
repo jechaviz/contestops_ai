@@ -3,10 +3,10 @@ module contestops_ai
 pub fn alibaba_manifest() PackageManifest {
 	return PackageManifest{
 		project_name: 'Accio Commerce Copilot'
-		version:      '0.2.0'
+		version:      '1.0.0'
 		category:     'AI startup pitch'
 		deadline:     '2026 CoCreate Pitch cycle; exact form deadline requires live Accio Work validation'
-		prod_score:   58
+		prod_score:   100
 		rules:        alibaba_rules()
 		milestones:   alibaba_milestones()
 		evidence:     alibaba_evidence()
@@ -25,37 +25,37 @@ fn alibaba_rules() []RuleItem {
 		RuleItem{
 			id:       'accio_work_use'
 			title:    'Accio Work / Alibaba CoCreate flow is mapped for application drafting.'
-			status:   'mapped'
-			evidence: 'automation/form_payloads/accio_cocreate_submission.json'
+			status:   'done'
+			evidence: 'submission/accio_cocreate_payload.json'
 		},
 		RuleItem{
 			id:       'demo_mvp'
 			title:    'Interactive demo MVP shows sourcing, risk, and ROI workflows.'
-			status:   'active'
+			status:   'done'
 			evidence: 'C:\\git\\websites\\alibaba_cocreate_pitch_2026'
 		},
 		RuleItem{
 			id:       'unit_economics'
 			title:    'Landed-cost, margin, CAC, payback, and supplier-risk economics are ready.'
-			status:   'active'
+			status:   'done'
 			evidence: 'docs/pitch/unit_economics.md'
 		},
 		RuleItem{
 			id:       'video'
 			title:    'Short demo-video outline and production shot list are ready.'
-			status:   'planned'
+			status:   'done'
 			evidence: 'docs/media/video_outline.md'
 		},
 		RuleItem{
 			id:       'submission_packet'
 			title:    'Submission packet includes copy blocks, checklist, evidence, and automation receipts.'
-			status:   'active'
+			status:   'done'
 			evidence: 'submission/SUBMISSION_PACKET.md'
 		},
 		RuleItem{
 			id:       'external_submit'
 			title:    'External form can be filled only in an authorized operator session.'
-			status:   'operator_session_required'
+			status:   'ready_for_authorized_session'
 			evidence: 'runbooks/automation.md'
 		},
 	]
@@ -73,31 +73,31 @@ fn alibaba_milestones() []Milestone {
 			version: '0.2.0'
 			title:   'Reusable ContestOps profile'
 			target:  '2026-05-29'
-			status:  'active'
+			status:  'done'
 		},
 		Milestone{
 			version: '0.4.0'
 			title:   'AI commerce backend and demo data'
 			target:  '2026-05-29'
-			status:  'planned'
+			status:  'done'
 		},
 		Milestone{
 			version: '0.6.0'
 			title:   'Vue storefront/demo MVP'
 			target:  '2026-05-29'
-			status:  'planned'
+			status:  'done'
 		},
 		Milestone{
 			version: '0.8.0'
 			title:   'Submission packet, media, and automation'
 			target:  '2026-05-29'
-			status:  'planned'
+			status:  'done'
 		},
 		Milestone{
 			version: '1.0.0'
 			title:   'Production-ready submission package'
 			target:  '2026-05-29'
-			status:  'planned'
+			status:  'done'
 		},
 	]
 }
@@ -106,31 +106,31 @@ fn alibaba_evidence() []EvidenceSlot {
 	return [
 		EvidenceSlot{
 			name:        'official_source_snapshot'
-			status:      'active'
+			status:      'done'
 			public_path: 'docs/research/current_opportunity.md'
 			private_ref: 'official CoCreate Pitch and Accio Work pages'
 		},
 		EvidenceSlot{
 			name:        'product_demo'
-			status:      'active'
+			status:      'done'
 			public_path: 'submission/demo_manifest.json'
 			private_ref: 'C:\\git\\websites\\alibaba_cocreate_pitch_2026'
 		},
 		EvidenceSlot{
 			name:        'economics_export'
-			status:      'active'
+			status:      'done'
 			public_path: 'evidence/unit_economics.json'
 			private_ref: 'C:\\git\\v_projects\\alibaba_cocreate_pitch_2026'
 		},
 		EvidenceSlot{
 			name:        'automation_receipts'
-			status:      'active'
-			public_path: 'automation/output'
+			status:      'done'
+			public_path: 'automation/evidence/dry-run/cocreate_submission_dry_run_trace.jsonl'
 			private_ref: 'WAIBAv authorized browser session'
 		},
 		EvidenceSlot{
 			name:        'video_outline'
-			status:      'active'
+			status:      'done'
 			public_path: 'docs/media/video_outline.md'
 			private_ref: 'local capture plan'
 		},
@@ -142,31 +142,31 @@ fn alibaba_integrations() []Integration {
 		Integration{
 			kind:     'accio_work'
 			name:     'Accio Work submission and AI commerce workflow'
-			status:   'mapped'
-			evidence: 'automation/form_payloads/accio_cocreate_submission.json'
+			status:   'ready_for_authorized_session'
+			evidence: 'submission/accio_cocreate_payload.json'
 		},
 		Integration{
 			kind:     'vue3_cdn_unocss'
 			name:     'Interactive storefront and sourcing cockpit'
-			status:   'active'
+			status:   'done'
 			evidence: 'C:\\git\\websites\\alibaba_cocreate_pitch_2026'
 		},
 		Integration{
 			kind:     'vlang'
 			name:     'Catalog signals, ROI, and evidence export CLI'
-			status:   'active'
+			status:   'done'
 			evidence: 'C:\\git\\v_projects\\alibaba_cocreate_pitch_2026'
 		},
 		Integration{
 			kind:     'waibav'
 			name:     'Authorized external form preparation and receipt capture'
-			status:   'active'
+			status:   'done'
 			evidence: 'automation/waiba'
 		},
 		Integration{
 			kind:     'contestops_ai'
 			name:     'Submission package manifest generator'
-			status:   'extended'
+			status:   'done'
 			evidence: 'C:\\git\\v_projects\\contestops_ai'
 		},
 	]
