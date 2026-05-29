@@ -8,7 +8,7 @@ pub fn default_scorecard() JudgeScorecard {
 			score:    58
 			weight:   35
 			evidence: 'sales/paid_pilot_offer.md and revenue ledger template'
-			gap:      'Replace TBD revenue with arms-length paid pilots.'
+			gap:      'Replace TBD revenue with independent paid pilots.'
 		},
 		ScoreDimension{
 			id:       'ai_native_operations'
@@ -189,7 +189,7 @@ fn default_competitors() []CompetitorArchetype {
 
 fn default_next_moves() []string {
 	return [
-		'Close 3 arms-length paid pilots before 2026-06-15.',
+		'Close 3 independent paid pilots before 2026-06-15.',
 		'Deploy V API to Cloud Run and capture Cloud Logging receipts.',
 		'Run one env-backed Gemini call per production package and store redacted receipts.',
 		'Publish 3 redacted case studies with before/after time saved.',

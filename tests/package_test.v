@@ -30,7 +30,7 @@ fn test_judge_scorecard_names_competitive_gaps() {
 	scorecard := contestops_ai.judge_scorecard_markdown(manifest)
 	assert scorecard.contains('Overall competitive score')
 	assert scorecard.contains('Vertical AI business with early revenue')
-	assert scorecard.contains('Close 3 arms-length paid pilots')
+	assert scorecard.contains('Close 3 independent paid pilots')
 }
 
 fn test_raise_profile_covers_startup_competition_gates() {
