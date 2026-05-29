@@ -2,17 +2,18 @@ module contestops_ai
 
 pub fn raise_manifest() PackageManifest {
 	return PackageManifest{
-		project_name: 'ContestOps AI'
-		version:      '0.2.0'
-		category:     'AI startup pitch'
-		deadline:     '2026-06-10'
-		prod_score:   72
-		rules:        raise_rules()
-		milestones:   raise_milestones()
-		evidence:     raise_evidence()
-		integrations: raise_integrations()
-		scorecard:    raise_scorecard()
-		proof_sprint: raise_proof_sprint()
+		project_name:  'ContestOps AI'
+		version:       '0.2.0'
+		category:      'AI startup pitch'
+		deadline:      '2026-06-10'
+		prod_score:    72
+		rules:         raise_rules()
+		milestones:    raise_milestones()
+		evidence:      raise_evidence()
+		integrations:  raise_integrations()
+		scorecard:     raise_scorecard()
+		proof_sprint:  raise_proof_sprint()
+		founder_proof: default_founder_proof()
 	}
 }
 

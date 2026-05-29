@@ -2,16 +2,17 @@ module contestops_ai
 
 pub fn alibaba_manifest() PackageManifest {
 	return PackageManifest{
-		project_name: 'Accio Commerce Copilot'
-		version:      '1.0.0'
-		category:     'AI startup pitch'
-		deadline:     '2026 CoCreate Pitch cycle; exact form deadline requires live Accio Work validation'
-		prod_score:   100
-		rules:        alibaba_rules()
-		milestones:   alibaba_milestones()
-		evidence:     alibaba_evidence()
-		integrations: alibaba_integrations()
-		proof_sprint: alibaba_proof_sprint()
+		project_name:  'Accio Commerce Copilot'
+		version:       '1.0.0'
+		category:      'AI startup pitch'
+		deadline:      '2026 CoCreate Pitch cycle; exact form deadline requires live Accio Work validation'
+		prod_score:    100
+		rules:         alibaba_rules()
+		milestones:    alibaba_milestones()
+		evidence:      alibaba_evidence()
+		integrations:  alibaba_integrations()
+		proof_sprint:  alibaba_proof_sprint()
+		founder_proof: default_founder_proof()
 	}
 }
 

@@ -89,19 +89,37 @@ pub:
 	win_conditions []string
 }
 
+pub struct ProfileSignal {
+pub:
+	label    string
+	status   string
+	evidence string
+	note     string
+}
+
+pub struct FounderProof {
+pub:
+	title            string
+	public_summary   string
+	private_boundary string
+	signals          []ProfileSignal
+	dogfood_cases    []ProfileSignal
+}
+
 pub struct PackageManifest {
 pub:
-	project_name string
-	version      string
-	category     string
-	deadline     string
-	prod_score   int
-	rules        []RuleItem
-	milestones   []Milestone
-	evidence     []EvidenceSlot
-	integrations []Integration
-	scorecard    JudgeScorecard
-	proof_sprint ProofSprint
+	project_name  string
+	version       string
+	category      string
+	deadline      string
+	prod_score    int
+	rules         []RuleItem
+	milestones    []Milestone
+	evidence      []EvidenceSlot
+	integrations  []Integration
+	scorecard     JudgeScorecard
+	proof_sprint  ProofSprint
+	founder_proof FounderProof
 }
 
 pub struct LlmResponse {

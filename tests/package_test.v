@@ -13,6 +13,7 @@ fn test_manifest_covers_required_xprize_integrations() {
 	assert manifest.scorecard.overall >= 78
 	assert manifest.scorecard.competitors.len >= 4
 	assert manifest.proof_sprint.metrics.len >= 6
+	assert manifest.founder_proof.signals.len >= 4
 }
 
 fn test_renderers_emit_submission_artifacts() {
@@ -25,6 +26,7 @@ fn test_renderers_emit_submission_artifacts() {
 	assert json.contains('"project_name": "ContestOps AI"')
 	assert json.contains('"scorecard"')
 	assert json.contains('"proof_sprint"')
+	assert json.contains('"founder_proof"')
 }
 
 fn test_judge_scorecard_names_competitive_gaps() {
@@ -44,6 +46,16 @@ fn test_proof_sprint_renderer_names_business_receipts() {
 	assert sprint.contains('Devpost draft is filled by automation')
 }
 
+fn test_founder_proof_renderer_redacts_private_identity() {
+	manifest := contestops_ai.default_manifest()
+	proof := contestops_ai.founder_profile_markdown(manifest)
+	assert proof.contains('Founder Proof')
+	assert proof.contains('AI, automation, and Gemini experience')
+	assert proof.contains('Private boundary')
+	assert !proof.contains('@gmail.com')
+	assert !proof.contains('CAGJ')
+}
+
 fn test_raise_profile_covers_startup_competition_gates() {
 	manifest := contestops_ai.manifest_for_profile('raise') or { panic(err) }
 	assert manifest.category == 'AI startup pitch'
@@ -58,6 +70,7 @@ fn test_raise_profile_covers_startup_competition_gates() {
 	assert manifest.scorecard.overall >= 80
 	assert manifest.scorecard.competitors.len >= 5
 	assert manifest.proof_sprint.metrics.len >= 3
+	assert manifest.founder_proof.dogfood_cases.len >= 4
 }
 
 fn test_raise_judge_scorecard_is_competition_specific() {

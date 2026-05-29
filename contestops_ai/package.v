@@ -2,17 +2,18 @@ module contestops_ai
 
 pub fn default_manifest() PackageManifest {
 	return PackageManifest{
-		project_name: 'ContestOps AI'
-		version:      '0.5.0'
-		category:     'Entrepreneurship & Job Creation'
-		deadline:     '2026-08-17 13:00 PDT'
-		prod_score:   86
-		rules:        default_rules()
-		milestones:   default_milestones()
-		evidence:     default_evidence()
-		integrations: default_integrations()
-		scorecard:    default_scorecard()
-		proof_sprint: default_proof_sprint()
+		project_name:  'ContestOps AI'
+		version:       '0.5.0'
+		category:      'Entrepreneurship & Job Creation'
+		deadline:      '2026-08-17 13:00 PDT'
+		prod_score:    86
+		rules:         default_rules()
+		milestones:    default_milestones()
+		evidence:      default_evidence()
+		integrations:  default_integrations()
+		scorecard:     default_scorecard()
+		proof_sprint:  default_proof_sprint()
+		founder_proof: default_founder_proof()
 	}
 }
 

@@ -51,6 +51,9 @@ fn run(args []string) !int {
 		'proof-sprint' {
 			return write_or_print(args, contestops_ai.proof_sprint_markdown(manifest))
 		}
+		'founder-proof' {
+			return write_or_print(args, contestops_ai.founder_profile_markdown(manifest))
+		}
 		'gemini-smoke' {
 			mock := args.contains('--mock')
 			prompt := 'Create the next Build with Gemini XPRIZE execution step for ContestOps AI.'
@@ -123,6 +126,7 @@ fn print_help() {
 	println('  strategic-brief [path]')
 	println('  judge-scorecard [path]')
 	println('  proof-sprint [path]')
+	println('  founder-proof [path]')
 	println('  gemini-smoke [path] [--mock]')
 	println('')
 	println('Options:')

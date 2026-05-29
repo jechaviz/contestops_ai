@@ -9,7 +9,8 @@ pub fn manifest_json(manifest PackageManifest) string {
 		'  "evidence": ${evidence_json(manifest.evidence)},\n' +
 		'  "integrations": ${integrations_json(manifest.integrations)},\n' +
 		'  "scorecard": ${scorecard_json(manifest.scorecard)},\n' +
-		'  "proof_sprint": ${proof_sprint_json(manifest.proof_sprint)}\n' + '}\n'
+		'  "proof_sprint": ${proof_sprint_json(manifest.proof_sprint)},\n' +
+		'  "founder_proof": ${founder_proof_json(manifest.founder_proof)}\n' + '}\n'
 }
 
 pub fn checklist_markdown(manifest PackageManifest) string {
@@ -82,6 +83,10 @@ pub fn application_packet_markdown(manifest PackageManifest) string {
 	lines << '## Proof Sprint'
 	lines << ''
 	lines << '- ${manifest.proof_sprint.window}: ${manifest.proof_sprint.objective}'
+	lines << ''
+	lines << '## Founder Proof'
+	lines << ''
+	lines << '- ${manifest.founder_proof.public_summary}'
 	return lines.join('\n') + '\n'
 }
 
@@ -126,6 +131,12 @@ pub fn strategic_brief_markdown(manifest PackageManifest) string {
 	lines << ''
 	for metric in manifest.proof_sprint.metrics {
 		lines << '- ${metric.label}: ${metric.current}/${metric.target} (${metric.status}).'
+	}
+	lines << ''
+	lines << '## Founder Proof'
+	lines << ''
+	for signal in manifest.founder_proof.signals {
+		lines << '- ${signal.label}: ${signal.status}.'
 	}
 	return lines.join('\n') + '\n'
 }
