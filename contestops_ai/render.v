@@ -8,7 +8,8 @@ pub fn manifest_json(manifest PackageManifest) string {
 		'  "milestones": ${milestones_json(manifest.milestones)},\n' +
 		'  "evidence": ${evidence_json(manifest.evidence)},\n' +
 		'  "integrations": ${integrations_json(manifest.integrations)},\n' +
-		'  "scorecard": ${scorecard_json(manifest.scorecard)}\n' + '}\n'
+		'  "scorecard": ${scorecard_json(manifest.scorecard)},\n' +
+		'  "proof_sprint": ${proof_sprint_json(manifest.proof_sprint)}\n' + '}\n'
 }
 
 pub fn checklist_markdown(manifest PackageManifest) string {
@@ -77,6 +78,10 @@ pub fn application_packet_markdown(manifest PackageManifest) string {
 	for slot in manifest.evidence {
 		lines << '- ${slot.status}: ${slot.name} at `${slot.public_path}`.'
 	}
+	lines << ''
+	lines << '## Proof Sprint'
+	lines << ''
+	lines << '- ${manifest.proof_sprint.window}: ${manifest.proof_sprint.objective}'
 	return lines.join('\n') + '\n'
 }
 
@@ -116,6 +121,12 @@ pub fn strategic_brief_markdown(manifest PackageManifest) string {
 	lines << '## Closing Line'
 	lines << ''
 	lines << '${manifest.project_name} turns deadline pressure into a repeatable AI operations workflow with checklists, evidence, payloads, and receipts.'
+	lines << ''
+	lines << '## Proof Sprint'
+	lines << ''
+	for metric in manifest.proof_sprint.metrics {
+		lines << '- ${metric.label}: ${metric.current}/${metric.target} (${metric.status}).'
+	}
 	return lines.join('\n') + '\n'
 }
 

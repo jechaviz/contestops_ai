@@ -3,15 +3,16 @@ module contestops_ai
 pub fn default_manifest() PackageManifest {
 	return PackageManifest{
 		project_name: 'ContestOps AI'
-		version:      '0.4.0'
+		version:      '0.5.0'
 		category:     'Entrepreneurship & Job Creation'
 		deadline:     '2026-08-17 13:00 PDT'
-		prod_score:   81
+		prod_score:   86
 		rules:        default_rules()
 		milestones:   default_milestones()
 		evidence:     default_evidence()
 		integrations: default_integrations()
 		scorecard:    default_scorecard()
+		proof_sprint: default_proof_sprint()
 	}
 }
 
@@ -96,9 +97,9 @@ fn default_milestones() []Milestone {
 		},
 		Milestone{
 			version: '0.5.0'
-			title:   'Paid pilot package'
-			target:  '2026-06-28'
-			status:  'planned'
+			title:   'Competitive proof sprint'
+			target:  '2026-05-29'
+			status:  'active'
 		},
 		Milestone{
 			version: '0.7.0'

@@ -12,6 +12,7 @@ pub fn raise_manifest() PackageManifest {
 		evidence:     raise_evidence()
 		integrations: raise_integrations()
 		scorecard:    raise_scorecard()
+		proof_sprint: raise_proof_sprint()
 	}
 }
 

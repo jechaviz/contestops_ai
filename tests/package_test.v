@@ -10,8 +10,9 @@ fn test_manifest_covers_required_xprize_integrations() {
 	assert has_integration(manifest, 'google_cloud')
 	assert has_rule(manifest, 'revenue')
 	assert has_rule(manifest, 'users')
-	assert manifest.scorecard.overall >= 75
+	assert manifest.scorecard.overall >= 78
 	assert manifest.scorecard.competitors.len >= 4
+	assert manifest.proof_sprint.metrics.len >= 6
 }
 
 fn test_renderers_emit_submission_artifacts() {
@@ -23,6 +24,7 @@ fn test_renderers_emit_submission_artifacts() {
 	assert evidence.contains('gemini_call')
 	assert json.contains('"project_name": "ContestOps AI"')
 	assert json.contains('"scorecard"')
+	assert json.contains('"proof_sprint"')
 }
 
 fn test_judge_scorecard_names_competitive_gaps() {
@@ -30,7 +32,16 @@ fn test_judge_scorecard_names_competitive_gaps() {
 	scorecard := contestops_ai.judge_scorecard_markdown(manifest)
 	assert scorecard.contains('Overall competitive score')
 	assert scorecard.contains('Vertical AI business with early revenue')
-	assert scorecard.contains('Close 3 independent paid pilots')
+	assert scorecard.contains('14-day proof sprint')
+}
+
+fn test_proof_sprint_renderer_names_business_receipts() {
+	manifest := contestops_ai.default_manifest()
+	sprint := contestops_ai.proof_sprint_markdown(manifest)
+	assert sprint.contains('Build with Gemini XPRIZE proof sprint')
+	assert sprint.contains('Paid pilots or signed invoices')
+	assert sprint.contains('Cloud Run deployment')
+	assert sprint.contains('Devpost draft is filled by automation')
 }
 
 fn test_raise_profile_covers_startup_competition_gates() {
@@ -46,6 +57,7 @@ fn test_raise_profile_covers_startup_competition_gates() {
 	assert has_integration(manifest, 'waibav')
 	assert manifest.scorecard.overall >= 80
 	assert manifest.scorecard.competitors.len >= 5
+	assert manifest.proof_sprint.metrics.len >= 3
 }
 
 fn test_raise_judge_scorecard_is_competition_specific() {

@@ -5,23 +5,23 @@ pub fn default_scorecard() JudgeScorecard {
 		ScoreDimension{
 			id:       'business_viability'
 			label:    'Business Viability'
-			score:    58
+			score:    62
 			weight:   35
-			evidence: 'sales/paid_pilot_offer.md and revenue ledger template'
-			gap:      'Replace TBD revenue with independent paid pilots.'
+			evidence: 'paid pilot offer, outreach queue, proof sprint, revenue ledger template'
+			gap:      'Close arms-length paid pilots and record payment or invoice receipts.'
 		},
 		ScoreDimension{
 			id:       'ai_native_operations'
 			label:    'AI-Native Operations'
-			score:    86
+			score:    88
 			weight:   35
-			evidence: 'V CLI, Gemini provider, WAIBAv traces, VImport scrape'
+			evidence: 'V CLI, Gemini provider, WAIBAv traces, VImport scrape, proof sprint renderer'
 			gap:      'Run env-backed Gemini and Cloud receipts in production.'
 		},
 		ScoreDimension{
 			id:       'category_impact'
 			label:    'Category Impact'
-			score:    82
+			score:    84
 			weight:   20
 			evidence: 'founder operations workflow and paid pilot package'
 			gap:      'Show user outcomes: hours saved, submissions shipped, jobs enabled.'
@@ -29,9 +29,9 @@ pub fn default_scorecard() JudgeScorecard {
 		ScoreDimension{
 			id:       'differentiation'
 			label:    'Differentiation'
-			score:    88
+			score:    90
 			weight:   10
-			evidence: 'evidence ledger, form maps, automated receipts'
+			evidence: 'evidence ledger, form maps, automated receipts, competitor rebuttals'
 			gap:      'Make one customer case study public and redacted.'
 		},
 	]
@@ -189,7 +189,7 @@ fn default_competitors() []CompetitorArchetype {
 
 fn default_next_moves() []string {
 	return [
-		'Close 3 independent paid pilots before 2026-06-15.',
+		'Run the 14-day proof sprint: 20 targets, 5 calls, 3 paid pilots, 3 feedback records.',
 		'Deploy V API to Cloud Run and capture Cloud Logging receipts.',
 		'Run one env-backed Gemini call per production package and store redacted receipts.',
 		'Publish 3 redacted case studies with before/after time saved.',

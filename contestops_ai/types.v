@@ -60,6 +60,35 @@ pub:
 	next_moves   []string
 }
 
+pub struct ProofMetric {
+pub:
+	id       string
+	label    string
+	target   int
+	current  int
+	status   string
+	evidence string
+}
+
+pub struct ProofSprintStep {
+pub:
+	day    string
+	title  string
+	owner  string
+	output string
+	status string
+}
+
+pub struct ProofSprint {
+pub:
+	name           string
+	window         string
+	objective      string
+	metrics        []ProofMetric
+	steps          []ProofSprintStep
+	win_conditions []string
+}
+
 pub struct PackageManifest {
 pub:
 	project_name string
@@ -72,6 +101,7 @@ pub:
 	evidence     []EvidenceSlot
 	integrations []Integration
 	scorecard    JudgeScorecard
+	proof_sprint ProofSprint
 }
 
 pub struct LlmResponse {

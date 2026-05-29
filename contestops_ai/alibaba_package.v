@@ -11,6 +11,7 @@ pub fn alibaba_manifest() PackageManifest {
 		milestones:   alibaba_milestones()
 		evidence:     alibaba_evidence()
 		integrations: alibaba_integrations()
+		proof_sprint: alibaba_proof_sprint()
 	}
 }
 
