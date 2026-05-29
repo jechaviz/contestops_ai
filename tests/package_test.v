@@ -22,6 +22,27 @@ fn test_renderers_emit_submission_artifacts() {
 	assert json.contains('"project_name": "ContestOps AI"')
 }
 
+fn test_raise_profile_covers_startup_competition_gates() {
+	manifest := contestops_ai.manifest_for_profile('raise') or { panic(err) }
+	assert manifest.category == 'AI startup pitch'
+	assert manifest.deadline == '2026-06-10'
+	assert manifest.prod_score >= 70
+	assert has_rule(manifest, 'ai_core')
+	assert has_rule(manifest, 'legal_entity')
+	assert has_rule(manifest, 'team')
+	assert has_rule(manifest, 'dealum')
+	assert has_integration(manifest, 'dealum')
+	assert has_integration(manifest, 'waibav')
+}
+
+fn test_application_packet_renderer_uses_selected_manifest() {
+	manifest := contestops_ai.raise_manifest()
+	packet := contestops_ai.application_packet_markdown(manifest)
+	assert packet.contains('AI startup pitch')
+	assert packet.contains('Dealum application payload')
+	assert packet.contains('Production readiness: 72%')
+}
+
 fn test_mock_gemini_receipt_is_deterministic() {
 	prompt := 'Plan the next ContestOps AI task.'
 	response := contestops_ai.complete_with_default_provider(prompt, true) or { panic(err) }

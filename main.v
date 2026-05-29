@@ -28,18 +28,19 @@ fn normalized_args() []string {
 
 fn run(args []string) !int {
 	command := args[0]
+	manifest := contestops_ai.manifest_for_profile(profile_name(args))!
 	match command {
 		'manifest' {
-			return write_or_print(args,
-				contestops_ai.manifest_json(contestops_ai.default_manifest()))
+			return write_or_print(args, contestops_ai.manifest_json(manifest))
 		}
 		'checklist' {
-			return write_or_print(args,
-				contestops_ai.checklist_markdown(contestops_ai.default_manifest()))
+			return write_or_print(args, contestops_ai.checklist_markdown(manifest))
 		}
 		'evidence' {
-			return write_or_print(args,
-				contestops_ai.evidence_markdown(contestops_ai.default_manifest()))
+			return write_or_print(args, contestops_ai.evidence_markdown(manifest))
+		}
+		'application-packet' {
+			return write_or_print(args, contestops_ai.application_packet_markdown(manifest))
 		}
 		'gemini-smoke' {
 			mock := args.contains('--mock')
@@ -51,6 +52,18 @@ fn run(args []string) !int {
 			return error('unknown command: ${command}')
 		}
 	}
+}
+
+fn profile_name(args []string) string {
+	for i, arg in args {
+		if arg == '--profile' && i + 1 < args.len {
+			return args[i + 1]
+		}
+		if arg.starts_with('--profile=') {
+			return arg.all_after('--profile=')
+		}
+	}
+	return 'default'
 }
 
 fn write_or_print(args []string, text string) !int {
@@ -69,10 +82,23 @@ fn write_or_print(args []string, text string) !int {
 }
 
 fn output_path(args []string) string {
-	for arg in args[1..] {
+	mut skip_next := false
+	for i, arg in args[1..] {
+		if skip_next {
+			skip_next = false
+			continue
+		}
+		if arg == '--profile' {
+			skip_next = true
+			continue
+		}
+		if arg.starts_with('--profile=') {
+			continue
+		}
 		if !arg.starts_with('-') {
 			return arg
 		}
+		_ = i
 	}
 	return ''
 }
@@ -84,5 +110,9 @@ fn print_help() {
 	println('  manifest [path]')
 	println('  checklist [path]')
 	println('  evidence [path]')
+	println('  application-packet [path]')
 	println('  gemini-smoke [path] [--mock]')
+	println('')
+	println('Options:')
+	println('  --profile raise')
 }

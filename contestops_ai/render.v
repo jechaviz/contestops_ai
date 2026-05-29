@@ -46,6 +46,39 @@ pub fn evidence_markdown(manifest PackageManifest) string {
 	return lines.join('\n') + '\n'
 }
 
+pub fn application_packet_markdown(manifest PackageManifest) string {
+	mut lines := []string{}
+	lines << '# ${manifest.project_name} Application Packet'
+	lines << ''
+	lines << 'Version: `${manifest.version}`'
+	lines << 'Category: ${manifest.category}'
+	lines << 'Deadline: ${manifest.deadline}'
+	lines << 'Production readiness: ${manifest.prod_score}%'
+	lines << ''
+	lines << '## Application Thesis'
+	lines << ''
+	lines << '${manifest.project_name} turns opportunity discovery, rule reading, evidence collection, demo packaging, and external submissions into AI-native startup operations.'
+	lines << ''
+	lines << '## Eligibility Gates'
+	lines << ''
+	for rule in manifest.rules {
+		lines << '- ${rule.status}: ${rule.title} Evidence: `${rule.evidence}`.'
+	}
+	lines << ''
+	lines << '## Milestones'
+	lines << ''
+	for milestone in manifest.milestones {
+		lines << '- ${milestone.version}: ${milestone.title} (${milestone.target}, ${milestone.status}).'
+	}
+	lines << ''
+	lines << '## Evidence'
+	lines << ''
+	for slot in manifest.evidence {
+		lines << '- ${slot.status}: ${slot.name} at `${slot.public_path}`.'
+	}
+	return lines.join('\n') + '\n'
+}
+
 pub fn gemini_receipt_json(response LlmResponse, prompt string) string {
 	return '{\n' + field('provider', response.provider, true) +
 		field('model', response.model, true) + field('prompt_hash', hash_text(prompt), true) +
