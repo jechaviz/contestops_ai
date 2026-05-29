@@ -43,6 +43,13 @@ $env:GEMINI_API_KEY='...'
 v run . -- gemini-smoke out\gemini_receipt.json
 ```
 
+## Cloud Run
+
+- `cmd/contestops-api`: V HTTP API exposing `/health`, `/manifest`,
+  `/checklist`, and `/evidence`.
+- `Dockerfile`: container build for Cloud Run.
+- `deploy/cloudrun-service.yaml`: Knative service skeleton for Google Cloud.
+
 ## Architecture
 
 - `types.v`: small domain contracts.

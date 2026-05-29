@@ -3,10 +3,10 @@ module contestops_ai
 pub fn default_manifest() PackageManifest {
 	return PackageManifest{
 		project_name: 'ContestOps AI'
-		version:      '0.1.0'
+		version:      '0.2.0'
 		category:     'Entrepreneurship & Job Creation'
 		deadline:     '2026-08-17 13:00 PDT'
-		prod_score:   27
+		prod_score:   67
 		rules:        default_rules()
 		milestones:   default_milestones()
 		evidence:     default_evidence()
@@ -37,8 +37,8 @@ fn default_rules() []RuleItem {
 		RuleItem{
 			id:       'google_cloud'
 			title:    'At least one Google Cloud product is used.'
-			status:   'planned'
-			evidence: 'evidence/google_cloud_receipts'
+			status:   'cloudrun_ready'
+			evidence: 'deploy/cloudrun-service.yaml'
 		},
 		RuleItem{
 			id:       'video'
@@ -49,8 +49,8 @@ fn default_rules() []RuleItem {
 		RuleItem{
 			id:       'repo'
 			title:    'Repository is public or shared with Devpost judging addresses.'
-			status:   'planned'
-			evidence: 'submission/devpost_payload.json'
+			status:   'active'
+			evidence: 'https://github.com/jechaviz/_contest'
 		},
 		RuleItem{
 			id:       'revenue'
@@ -166,8 +166,8 @@ fn default_integrations() []Integration {
 		Integration{
 			kind:     'google_cloud'
 			name:     'Cloud Run, Cloud Logging, Cloud Storage'
-			status:   'planned'
-			evidence: 'deploy receipts'
+			status:   'cloudrun_ready'
+			evidence: 'Dockerfile and deploy/cloudrun-service.yaml'
 		},
 		Integration{
 			kind:     'vimport'
