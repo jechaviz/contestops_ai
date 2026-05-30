@@ -53,6 +53,17 @@ v run . -- strategic-brief --profile accion_trust out\accion_STRATEGIC_BRIEF.gen
 v run . -- judge-scorecard --profile accion_trust out\accion_JUDGE_SCORECARD.generated.md
 ```
 
+Use the USAII Global AI Hackathon 2026 profile with:
+
+```powershell
+v run . -- manifest --profile usaii out\usaii_manifest.json
+v run . -- checklist --profile usaii out\usaii_RULES_CHECKLIST.generated.md
+v run . -- evidence --profile usaii out\usaii_EVIDENCE.generated.md
+v run . -- application-packet --profile usaii out\usaii_APPLICATION_PACKET.generated.md
+v run . -- strategic-brief --profile usaii out\usaii_STRATEGIC_BRIEF.generated.md
+v run . -- judge-scorecard --profile usaii out\usaii_JUDGE_SCORECARD.generated.md
+```
+
 Use a real Gemini call with:
 
 ```powershell
@@ -73,6 +84,7 @@ v run . -- gemini-smoke out\gemini_receipt.json
 - `package.v`: default Build with Gemini XPRIZE package data.
 - `raise_package.v`: RAISE the STAKES startup application package data.
 - `alibaba_package.v`: Alibaba CoCreate Pitch / Accio Work package data.
+- `usaii_package.v`: USAII Global AI Hackathon student package data.
 - `competitive.v`: judge scoring, competitor archetypes, and next moves.
 - `profiles.v`: profile selection for opportunity-specific packages.
 - `render.v`: JSON and markdown emitters.

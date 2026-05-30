@@ -172,6 +172,9 @@ pub fn judge_scorecard_markdown(manifest PackageManifest) string {
 
 fn application_thesis(manifest PackageManifest) string {
 	match manifest.project_name {
+		'AI Study-to-Work Coach' {
+			return 'AI Study-to-Work Coach helps students turn interests, constraints, and current skills into an explainable learning plan, portfolio artifact, opportunity match, and human-approved next step for school-to-career readiness.'
+		}
 		'Accio Commerce Copilot' {
 			return 'Accio Commerce Copilot helps small importers turn supplier discovery into an AI-scored buy plan with landed cost, margin, supplier risk, Accio Work execution steps, and launch evidence ready for CoCreate Pitch review.'
 		}

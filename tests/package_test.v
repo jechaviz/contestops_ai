@@ -143,6 +143,32 @@ fn test_accion_trust_packet_names_partner_gate() {
 	assert packet.contains('partner_required')
 }
 
+fn test_usaii_profile_covers_student_hackathon_package() {
+	manifest := contestops_ai.manifest_for_profile('usaii') or { panic(err) }
+	assert manifest.project_name == 'AI Study-to-Work Coach'
+	assert manifest.category.contains('student_partner_track')
+	assert manifest.deadline == '2026-06-21 23:59 ET'
+	assert manifest.prod_score == 100
+	assert has_rule(manifest, 'student_only')
+	assert has_rule(manifest, 'qualifier')
+	assert has_rule(manifest, 'build_window')
+	assert has_rule(manifest, 'external_submission_automation')
+	assert has_integration(manifest, 'vlang')
+	assert has_integration(manifest, 'vue3_cdn_sfc_unocss')
+	assert has_integration(manifest, 'waibav')
+	assert manifest.scorecard.overall >= 94
+	assert manifest.proof_sprint.metrics.len >= 4
+}
+
+fn test_usaii_packet_names_student_and_build_window_gates() {
+	manifest := contestops_ai.usaii_manifest()
+	packet := contestops_ai.application_packet_markdown(manifest)
+	assert packet.contains('AI Study-to-Work Coach helps students')
+	assert packet.contains('student_partner_required')
+	assert packet.contains('Substantial competitive build work')
+	assert packet.contains('Production readiness: 100%')
+}
+
 fn test_mock_gemini_receipt_is_deterministic() {
 	prompt := 'Plan the next ContestOps AI task.'
 	response := contestops_ai.complete_with_default_provider(prompt, true) or { panic(err) }

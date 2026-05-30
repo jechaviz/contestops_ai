@@ -15,6 +15,10 @@ pub fn manifest_for_profile(profile string) !PackageManifest {
 		'student_partner_track' {
 			return accion_trust_manifest()
 		}
+		'usaii', 'usaii_global_ai_hackathon', 'usaii_global_ai_hackathon_2026',
+		'usaii_student_partner_track' {
+			return usaii_manifest()
+		}
 		else {
 			return error('unknown profile: ${profile}')
 		}
