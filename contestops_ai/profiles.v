@@ -11,6 +11,10 @@ pub fn manifest_for_profile(profile string) !PackageManifest {
 		'alibaba', 'alibaba_cocreate', 'alibaba_cocreate_pitch_2026', 'accio_work' {
 			return alibaba_manifest()
 		}
+		'accion_trust', 'accion_trust_by_design', 'accion_trust_by_design_fintech',
+		'student_partner_track' {
+			return accion_trust_manifest()
+		}
 		else {
 			return error('unknown profile: ${profile}')
 		}

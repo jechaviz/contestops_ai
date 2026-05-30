@@ -42,6 +42,17 @@ v run . -- strategic-brief --profile alibaba out\alibaba_STRATEGIC_BRIEF.generat
 v run . -- judge-scorecard --profile alibaba out\alibaba_JUDGE_SCORECARD.generated.md
 ```
 
+Use the Accion Trust by Design Fintech Challenge profile with:
+
+```powershell
+v run . -- manifest --profile accion_trust out\accion_manifest.json
+v run . -- checklist --profile accion_trust out\accion_RULES_CHECKLIST.generated.md
+v run . -- evidence --profile accion_trust out\accion_EVIDENCE.generated.md
+v run . -- application-packet --profile accion_trust out\accion_APPLICATION_PACKET.generated.md
+v run . -- strategic-brief --profile accion_trust out\accion_STRATEGIC_BRIEF.generated.md
+v run . -- judge-scorecard --profile accion_trust out\accion_JUDGE_SCORECARD.generated.md
+```
+
 Use a real Gemini call with:
 
 ```powershell

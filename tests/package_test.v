@@ -119,6 +119,30 @@ fn test_alibaba_packet_uses_product_specific_thesis() {
 	assert packet.contains('Production readiness: 100%')
 }
 
+fn test_accion_trust_profile_covers_student_partner_track() {
+	manifest := contestops_ai.manifest_for_profile('student_partner_track') or { panic(err) }
+	assert manifest.project_name == 'Trust Layer for Inclusive Fintech'
+	assert manifest.category.contains('student_partner_track')
+	assert manifest.deadline == '2026-06-05 23:59 EDT'
+	assert manifest.prod_score == 100
+	assert has_rule(manifest, 'eligible_fintech_partner')
+	assert has_rule(manifest, 'gender_disaggregated_metrics')
+	assert has_rule(manifest, 'external_form_automation')
+	assert has_integration(manifest, 'vlang')
+	assert has_integration(manifest, 'vue3_cdn_sfc_unocss')
+	assert has_integration(manifest, 'waibav')
+	assert manifest.scorecard.overall >= 99
+	assert manifest.proof_sprint.metrics.len >= 4
+}
+
+fn test_accion_trust_packet_names_partner_gate() {
+	manifest := contestops_ai.accion_trust_manifest()
+	packet := contestops_ai.application_packet_markdown(manifest)
+	assert packet.contains('eligible in-market fintech')
+	assert packet.contains('Production readiness: 100%')
+	assert packet.contains('partner_required')
+}
+
 fn test_mock_gemini_receipt_is_deterministic() {
 	prompt := 'Plan the next ContestOps AI task.'
 	response := contestops_ai.complete_with_default_provider(prompt, true) or { panic(err) }
