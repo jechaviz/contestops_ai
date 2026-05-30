@@ -184,7 +184,8 @@ fn application_thesis(manifest PackageManifest) string {
 pub fn gemini_receipt_json(response LlmResponse, prompt string) string {
 	return '{\n' + field('provider', response.provider, true) +
 		field('model', response.model, true) + field('prompt_hash', hash_text(prompt), true) +
-		field('content', response.content, true) + '  "mock": ${response.mock},\n' +
+		field('content_preview', content_preview(response.content), true) +
+		field('content_hash', hash_text(response.content), true) + '  "mock": ${response.mock},\n' +
 		'  "status_code": ${response.status_code}\n' + '}\n'
 }
 
@@ -279,4 +280,12 @@ fn hash_text(value string) string {
 		hash *= u32(16777619)
 	}
 	return '${hash:08x}'
+}
+
+fn content_preview(value string) string {
+	normalized := value.replace('\r', ' ').replace('\n', ' ').replace('\t', ' ')
+	if normalized.len <= 220 {
+		return normalized
+	}
+	return normalized[..220] + '...'
 }
