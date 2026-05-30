@@ -169,6 +169,30 @@ fn test_usaii_packet_names_student_and_build_window_gates() {
 	assert packet.contains('Production readiness: 100%')
 }
 
+fn test_wfp_sdg2_profile_covers_impact_grants_package() {
+	manifest := contestops_ai.manifest_for_profile('wfp_sdg2') or { panic(err) }
+	assert manifest.project_name == 'Food Risk Signal Desk'
+	assert manifest.category.contains('impact_grants')
+	assert manifest.prod_score == 100
+	assert has_rule(manifest, 'mvp_stage')
+	assert has_rule(manifest, 'impact_and_scale')
+	assert has_rule(manifest, 'external_form_automation')
+	assert has_integration(manifest, 'vlang')
+	assert has_integration(manifest, 'vue3_cdn_sfc_unocss')
+	assert has_integration(manifest, 'wfp_hungermap_data')
+	assert has_integration(manifest, 'waibav')
+	assert manifest.scorecard.overall >= 95
+	assert manifest.proof_sprint.metrics.len >= 4
+}
+
+fn test_wfp_sdg2_packet_names_food_risk_signal_desk() {
+	manifest := contestops_ai.wfp_sdg2_manifest()
+	packet := contestops_ai.application_packet_markdown(manifest)
+	assert packet.contains('Food Risk Signal Desk helps WFP country teams')
+	assert packet.contains('Rolling WFP Innovation Challenge review')
+	assert packet.contains('Production readiness: 100%')
+}
+
 fn test_mock_gemini_receipt_is_deterministic() {
 	prompt := 'Plan the next ContestOps AI task.'
 	response := contestops_ai.complete_with_default_provider(prompt, true) or { panic(err) }

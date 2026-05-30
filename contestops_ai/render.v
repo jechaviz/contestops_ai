@@ -178,6 +178,9 @@ fn application_thesis(manifest PackageManifest) string {
 		'Accio Commerce Copilot' {
 			return 'Accio Commerce Copilot helps small importers turn supplier discovery into an AI-scored buy plan with landed cost, margin, supplier risk, Accio Work execution steps, and launch evidence ready for CoCreate Pitch review.'
 		}
+		'Food Risk Signal Desk' {
+			return 'Food Risk Signal Desk helps WFP country teams and partners fuse open food-security, climate, conflict, market, and field indicators into explainable risk signals, prioritized action queues, and a six-month Sprint plan for earlier SDG2 response.'
+		}
 		else {
 			return '${manifest.project_name} turns opportunity discovery, rule reading, evidence collection, demo packaging, and external submissions into AI-native startup operations.'
 		}

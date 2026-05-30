@@ -19,6 +19,10 @@ pub fn manifest_for_profile(profile string) !PackageManifest {
 		'usaii_student_partner_track' {
 			return usaii_manifest()
 		}
+		'wfp', 'wfp_sdg2', 'wfp_innovation_challenge_sdg2', 'food_risk_signal_desk',
+		'impact_grants' {
+			return wfp_sdg2_manifest()
+		}
 		else {
 			return error('unknown profile: ${profile}')
 		}

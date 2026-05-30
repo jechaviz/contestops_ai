@@ -130,5 +130,5 @@ fn print_help() {
 	println('  gemini-smoke [path] [--mock]')
 	println('')
 	println('Options:')
-	println('  --profile raise')
+	println('  --profile raise|alibaba|accion_trust|usaii|wfp_sdg2')
 }
